@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>I Love You Babe ❤️</title>
+
+<style>
+    body {
+        background: #ffeef7;
+        font-family: Arial, sans-serif;
+        text-align: center;
+        padding-top: 60px;
+        overflow: hidden;
+    }
+
+    h2 {
+        font-size: 30px;
+        color: #ff2e63;
+    }
+
+    .gift-box {
+        width:150px;
+        margin:0 auto;
+        cursor:pointer;
+        transition: transform .4s;
+        animation: bounce 1.8s infinite ease-in-out;
+        border-radius: 10px;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-12px); }
+    }
+
+    button {
+        margin-top:15px;
+        padding:12px 26px;
+        border:none;
+        background:#ff2e63;
+        color:#fff;
+        font-size:20px;
+        border-radius:12px;
+        cursor:pointer;
+        transition:.3s;
+    }
+
+    button:hover {
+        background:#d61b4c;
+        transform: scale(1.05);
+    }
+
+    .kiss-container {
+        display:none;
+        margin-top:20px;
+        animation: fadeIn 1.2s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+        from {opacity:0; transform: scale(.7);}
+        to {opacity:1; transform: scale(1);}
+    }
+
+    /* Falling Hearts */
+    .heart {
+        position: fixed;
+        color: #ff2e63;
+        top: -20px;
+        font-size: 22px;
+        animation: fall 4s linear infinite;
+        opacity: 0.8;
+    }
+
+    @keyframes fall {
+        to {
+            transform: translateY(110vh);
+            opacity: 0;
+        }
+    }
+
+    /* Sparkles around kiss */
+    .sparkle {
+        position: absolute;
+        width: 12px;
+        height: 12px;
+        background: rgba(255,255,255,0.8);
+        border-radius: 50%;
+        animation: sparkle 1.4s infinite ease-in-out;
+    }
+
+    @keyframes sparkle {
+        0% { transform: scale(0.5); opacity: 0.9; }
+        50% { transform: scale(1.2); opacity: 1; }
+        100% { transform: scale(0.5); opacity: 0.4; }
+    }
+</style>
+</head>
+<body>
+
+<!-- ✨ Background Music -->
+<audio id="bgMusic" src="music.mp3" preload="auto"></audio>
+
+<h2 id="headerText">🎁 Tap to open your surprise Babe ❤️</h2>
+
+<img src="Images/giftbox.jpg" class="gift-box" id="giftBox">
+
+<br>
+<button onclick="openGift()" id="openButton">Open Gift</button>
+
+<!-- 💋 Kiss Surprise -->
+<div class="kiss-container" id="kissBox">
+    <h2 style="margin-bottom:10px;">I Love You Babe ❤️</h2>
+    <img src="Images/BearBlowakissGIF.gif" width="260">
+    <h2 style="margin-bottom:10px;">💗💗💓💗💗</h2>
+
+    <!-- Sparkles -->
+    <div class="sparkle" style="top: 60%; left: 45%; animation-delay: 0s;"></div>
+    <div class="sparkle" style="top: 50%; left: 55%; animation-delay: .3s;"></div>
+    <div class="sparkle" style="top: 65%; left: 50%; animation-delay: .7s;"></div>
+    <div class="sparkle" style="top: 58%; left: 40%; animation-delay: 1s;"></div>
+</div>
+
+<script>
+function openGift() {
+    // Hide items
+    document.getElementById("headerText").style.display = "none";
+    document.getElementById("giftBox").style.display = "none";
+    document.getElementById("openButton").style.display = "none";
+
+    // Show kiss animation
+    document.getElementById("kissBox").style.display = "block";
+
+    // Start falling hearts
+    setInterval(createHeart, 300);
+}
+
+// Falling Hearts Generator
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.classList.add("heart");
+    heart.innerHTML = "❤️";
+
+    // random left position
+    heart.style.left = Math.random() * 100 + "vw";
+
+    // random speed
+    heart.style.animationDuration = (Math.random() * 2 + 3) + "s";
+
+    document.body.appendChild(heart);
+
+    // Remove after fall
+    setTimeout(() => {
+        heart.remove();
+    }, 5000);
+}
+</script>
+
+</body>
+</html>
